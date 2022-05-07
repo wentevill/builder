@@ -30,6 +30,9 @@ func detectFn(ctx *gcp.Context) (gcp.DetectResult, error) {
 }
 
 func buildFn(ctx *gcp.Context) error {
+	l := ctx.Layer("quanxiang-lowcode", gcp.BuildLayer, gcp.CacheLayer)
+	ctx.SetFunctionsEnvVars(l)
+
 	ctx.Logf("=========**=============")
 	return nil
 }
