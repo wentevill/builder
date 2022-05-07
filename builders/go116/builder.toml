@@ -31,10 +31,10 @@ description = "Ubuntu 18 base image with buildpacks for .NET, Go, Java, Node.js,
 [[order]]
 
   [[order.group]]
-    id = "quanxiang.go.quanxiang-lowcode-plugins"
+    id = "openfunction.go.of-functions-framework"
 
   [[order.group]]
-    id = "openfunction.go.of-functions-framework"
+    id = "quanxiang.go.quanxiang-lowcode-plugins"
 
   [[order.group]]
     id = "google.go.build"
