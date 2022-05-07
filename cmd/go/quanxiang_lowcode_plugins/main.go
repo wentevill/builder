@@ -33,6 +33,8 @@ func buildFn(ctx *gcp.Context) error {
 	l := ctx.Layer("quanxiang-lowcode", gcp.BuildLayer, gcp.CacheLayer)
 	ctx.SetFunctionsEnvVars(l)
 
-	ctx.Logf("=========**=============")
+	ctx.Logf("  ")
+	ctx.Logf("=========**=========== 1")
+	ctx.Logf("  ")
 	return nil
 }
