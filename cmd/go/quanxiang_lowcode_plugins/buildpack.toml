@@ -1,0 +1,15 @@
+api = "0.7"
+
+[buildpack]
+id = "quanxiang.go.quanxiang-lowcode-plugins"
+version = "0.0.1"
+name = "Go - quanxiang lowcode plugins"
+
+[[stacks]]
+id = "quanxiang"
+
+[[stacks]]
+id = "openfunction.go115"
+
+[[stacks]]
+id = "openfunction.go116"

@@ -1,0 +1,31 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+
+# Go build Buildpack
+load("//tools:defs.bzl", "buildpack")
+
+licenses(["notice"])
+
+buildpack(
+    name = "quanxiang_lowcode_plugins",
+    executables = [
+        ":main",
+    ],
+    visibility = [
+        "//builders:go_builders",
+    ],
+)
+
+go_binary(
+    name = "main",
+    srcs = ["main.go"],
+    # Strip debugging information to reduce binary size.
+    gc_linkopts = [
+        "-s",
+        "-w",
+    ],
+    deps = [
+        "//pkg/clearsource",
+        "//pkg/env",
+        "//pkg/gcpbuildpack",
+    ],
+)
