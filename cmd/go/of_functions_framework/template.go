@@ -37,6 +37,7 @@ import (
 	{{- end }}
 )
 
+// @schemes http
 func main() {
 	ctx := context.Background()
 	fwk, err := framework.NewFramework()
