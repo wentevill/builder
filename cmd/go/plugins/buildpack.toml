@@ -1,0 +1,15 @@
+api = "0.7"
+
+[buildpack]
+id = "openfunction.go.plugins"
+version = "0.0.1"
+name = "Go - lowcode plugins"
+
+[[stacks]]
+id = "google"
+
+[[stacks]]
+id = "openfunction.go115"
+
+[[stacks]]
+id = "openfunction.go116"
