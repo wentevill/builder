@@ -48,6 +48,8 @@ func buildFn(ctx *gcp.Context) error {
 	l := ctx.Layer(layerName, gcp.BuildLayer, gcp.CacheLayer)
 	ctx.SetFunctionsEnvVars(l)
 
+	ctx.Logf("QUANXIANG lowcode client")
+
 	createPlugins(ctx)
 	err := createQuanxiangPlugins(ctx)
 	if err != nil {
