@@ -7,9 +7,6 @@ licenses(["notice"])
 
 buildpack(
     name = "quanxiang_plugins",
-    srcs = [
-        "converter/get_package/main.go",
-    ],
     executables = [
         ":main",
     ],
