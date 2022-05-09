@@ -28,12 +28,12 @@ import (
 const (
 	layerName = "quanxiang-plugins"
 
-	quanxiangLowcodeClientPlugins = "plugins-quanxiang-lowcode-client"
-	quanxiangLowcodeClientGO      = "plugins-quanxiang-lowcode-client.go"
+	quanxiangLowcodeClientPlugins = "plugin-quanxiang-lowcode-client"
+	quanxiangLowcodeClientGO      = "plugin-quanxiang-lowcode-client.go"
 )
 
 var (
-	tmplV0 = template.Must(template.New("plugins-quanxiang-lowcode-client").Parse(quanxiangLowcodeClientTextTemplate))
+	tmplV0 = template.Must(template.New("plugin-quanxiang-lowcode-client").Parse(quanxiangLowcodeClientTextTemplate))
 )
 
 func main() {
