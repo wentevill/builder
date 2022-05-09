@@ -20,6 +20,10 @@ description = "Ubuntu 18 base image with buildpacks for .NET, Go, Java, Node.js,
   id = "google.utils.label"
   uri = "label.tgz"
 
+[[buildpacks]]
+  id = "openfunction.go.plugins"
+  uri = "go/plugins.tgz"
+
 ######
 # Go #
 ######
@@ -28,6 +32,9 @@ description = "Ubuntu 18 base image with buildpacks for .NET, Go, Java, Node.js,
 
   [[order.group]]
     id = "openfunction.go.of-functions-framework"
+  
+  [[order.group]]
+    id = "openfunction.go.plugins"
 
   [[order.group]]
     id = "google.go.build"
@@ -47,8 +54,8 @@ description = "Ubuntu 18 base image with buildpacks for .NET, Go, Java, Node.js,
 # Currently built with //builders/go116/stack/stack:build.
 [stack]
   id = "openfunction.go116"
-  build-image = "openfunctiondev/buildpacks-go116-build:v2"
-  run-image = "openfunctiondev/buildpacks-run-go:v2"
+  build-image = "qxcr.xyz/faas/buildpacks-go116-build:v2"
+  run-image = "qxcr.xyz/faas/buildpacks-run-go:v2"
 
 [lifecycle]
   version = "0.13.2"
