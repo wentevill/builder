@@ -1,7 +1,7 @@
 api = "0.7"
 
 [buildpack]
-id = "openfunction.go.plugins"
+id = "openfunction.go.quanxiang-plugins"
 version = "0.0.1"
 name = "Go - lowcode plugins"
 

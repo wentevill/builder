@@ -6,7 +6,7 @@ load("//tools:defs.bzl", "buildpack")
 licenses(["notice"])
 
 buildpack(
-    name = "plugins",
+    name = "quanxiang_plugins",
     srcs = [
         "converter/get_package/main.go",
         "converter/without-framework/go.mod",

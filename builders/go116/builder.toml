@@ -21,8 +21,8 @@ description = "Ubuntu 18 base image with buildpacks for .NET, Go, Java, Node.js,
   uri = "label.tgz"
 
 [[buildpacks]]
-  id = "openfunction.go.plugins"
-  uri = "go/plugins.tgz"
+  id = "openfunction.go.quanxiang-plugins"
+  uri = "go/quanxiang_plugins.tgz"
 
 ######
 # Go #
@@ -31,7 +31,7 @@ description = "Ubuntu 18 base image with buildpacks for .NET, Go, Java, Node.js,
 [[order]]
 
   [[order.group]]
-    id = "openfunction.go.plugins"
+    id = "openfunction.go.quanxiang-plugins"
 
   [[order.group]]
     id = "openfunction.go.of-functions-framework"
