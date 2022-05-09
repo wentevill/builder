@@ -14,4 +14,4 @@
 
 package main
 
-const quanxiangLowcodeClient = `======X========`
+const quanxiangLowcodeClientTextTemplate = `======X========`
