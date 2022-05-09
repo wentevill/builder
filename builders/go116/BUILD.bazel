@@ -13,7 +13,7 @@ builder(
             "//cmd/go/build:build.tgz",
             "//cmd/go/clear_source:clear_source.tgz",
             "//cmd/go/of_functions_framework:of_functions_framework.tgz",
-            "//cmd/go/quanxiang_plugins:plugins.tgz"
+            "//cmd/go/quanxiang_plugins:quanxiang_plugins.tgz"
         ],
     },
     image = "qxcr.xyz/faas/builder-go:v1alpha1",
