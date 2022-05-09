@@ -17,7 +17,23 @@
 package main
 
 import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"text/template"
+
 	gcp "github.com/GoogleCloudPlatform/buildpacks/pkg/gcpbuildpack"
+)
+
+const (
+	layerName = "quanxiang-plugins"
+
+	quanxiangLowcodeClientPlugins = "plugins-quanxiang-lowcode-client"
+	quanxiangLowcodeClientGO      = "plugins-quanxiang-lowcode-client.go"
+)
+
+var (
+	tmplV0 = template.Must(template.New("plugins-quanxiang-lowcode-client").Parse(quanxiangLowcodeClientTextTemplate))
 )
 
 func main() {
@@ -25,10 +41,32 @@ func main() {
 }
 
 func detectFn(ctx *gcp.Context) (gcp.DetectResult, error) {
-
 	return gcp.OptIn("lowcode plugins"), nil
 }
 
 func buildFn(ctx *gcp.Context) error {
+	l := ctx.Layer(layerName, gcp.BuildLayer, gcp.CacheLayer)
+	ctx.SetFunctionsEnvVars(l)
+
+	return nil
+}
+
+func createPlugins(ctx *gcp.Context) {
+	if !ctx.FileExists("plugins") {
+		ctx.MkdirAll("plugins", 0755)
+	}
+}
+
+func createQuanxiangPlugins(ctx *gcp.Context) error {
+	fp := filepath.Join("plugins", quanxiangLowcodeClientPlugins)
+	os.RemoveAll(fp)
+	os.MkdirAll(fp, 0755)
+
+	fd := ctx.CreateFile(filepath.Join(fp, quanxiangLowcodeClientGO))
+	defer fd.Close()
+
+	if err := tmplV0.Execute(fd, nil); err != nil {
+		return fmt.Errorf("executing template: %v", err)
+	}
 	return nil
 }
