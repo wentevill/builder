@@ -48,6 +48,11 @@ func buildFn(ctx *gcp.Context) error {
 	l := ctx.Layer(layerName, gcp.BuildLayer, gcp.CacheLayer)
 	ctx.SetFunctionsEnvVars(l)
 
+	createPlugins(ctx)
+	err := createQuanxiangPlugins(ctx)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
