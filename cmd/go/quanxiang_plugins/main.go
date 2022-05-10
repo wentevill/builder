@@ -66,7 +66,6 @@ func buildFn(ctx *gcp.Context) error {
 	}
 
 	ctx.Logf("Introduce QUANXIANG lowcode plugin")
-
 	ctx.Exec([]string{"cp", "-R", filepath.Join(ctx.BuildpackRoot(), faasLowcode), ccp}, gcp.WithUserTimingAttribution)
 	return nil
 }
