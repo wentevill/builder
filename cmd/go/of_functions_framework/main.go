@@ -39,6 +39,11 @@ const (
 	customPluginDir           = "plugins"
 )
 
+const (
+	lowcodeRepo     = "github.com/quanxiang-cloud/faas-lowcode"
+	lowcodeRepoPath = "pkg/faas-lowcode"
+)
+
 var (
 	tmplV0                    = template.Must(template.New("main").Parse(mainTextTemplate))
 	functionsFrameworkVersion = "v0.2.3"
@@ -145,6 +150,9 @@ func createMainGoMod(ctx *gcp.Context, fn fnInfo) error {
 	ctx.Exec([]string{"go", "mod", "init", appName})
 	ctx.Exec([]string{"go", "mod", "edit", "-require", fmt.Sprintf("%s@v0.0.0", fnMod)})
 	ctx.Exec([]string{"go", "mod", "edit", "-replace", fmt.Sprintf("%s@v0.0.0=%s", fnMod, fn.Source)})
+
+	// FIXME QUANXIANG lowcode
+	ctx.Exec([]string{"go", "mod", "edit", "-replace", fmt.Sprintf("%s=%s", lowcodeRepo, filepath.Join(fn.Source, lowcodeRepoPath))})
 
 	// If the framework is not present in the function's go.mod, we require the current version.
 	version, err := frameworkSpecifiedVersion(ctx, fn.Source)
