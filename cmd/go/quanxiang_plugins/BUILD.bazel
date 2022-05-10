@@ -13,6 +13,9 @@ buildpack(
     visibility = [
         "//builders:go_builders",
     ],
+    srcs = [
+        "xx/xx.txt"
+    ]
 )
 
 go_binary(

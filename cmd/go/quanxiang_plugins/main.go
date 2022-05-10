@@ -41,6 +41,9 @@ func main() {
 }
 
 func detectFn(ctx *gcp.Context) (gcp.DetectResult, error) {
+	if !ctx.FileExists("go.mod") {
+		return gcp.OptOutFileNotFound("go.mod"), nil
+	}
 	return gcp.OptIn("lowcode plugins"), nil
 }
 
@@ -48,13 +51,22 @@ func buildFn(ctx *gcp.Context) error {
 	l := ctx.Layer(layerName, gcp.BuildLayer, gcp.CacheLayer)
 	ctx.SetFunctionsEnvVars(l)
 
-	ctx.Logf("QUANXIANG lowcode client")
-
+	// Create quanxiang lowcode client plugins
 	createPlugins(ctx)
 	err := createQuanxiangPlugins(ctx)
 	if err != nil {
 		return err
 	}
+
+	// Introduce plugin implementation code
+	ctx.Logf(
+		"BuildpackRoot: %s ,BuildpackName: %s ,BuildpackVersion: %s ,BuildpackID: %s",
+		ctx.BuildpackRoot(),
+		ctx.BuildpackName(),
+		ctx.BuildpackVersion(),
+		ctx.BuildpackID(),
+	)
+
 	return nil
 }
 
