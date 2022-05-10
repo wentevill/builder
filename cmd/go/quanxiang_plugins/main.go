@@ -30,6 +30,7 @@ const (
 
 	quanxiangLowcodeClientPlugins = "plugin-quanxiang-lowcode-client"
 	quanxiangLowcodeClientGO      = "plugin-quanxiang-lowcode-client.go"
+	faasLowcode                   = "faas-lowcode"
 )
 
 var (
@@ -52,27 +53,30 @@ func buildFn(ctx *gcp.Context) error {
 	ctx.SetFunctionsEnvVars(l)
 
 	// Create quanxiang lowcode client plugins
-	createPlugins(ctx)
+	createDir(ctx, "plugins")
 	err := createQuanxiangPlugins(ctx)
 	if err != nil {
 		return err
 	}
 
 	// Introduce plugin implementation code
-	ctx.Logf(
-		"BuildpackRoot: %s ,BuildpackName: %s ,BuildpackVersion: %s ,BuildpackID: %s",
-		ctx.BuildpackRoot(),
-		ctx.BuildpackName(),
-		ctx.BuildpackVersion(),
-		ctx.BuildpackID(),
-	)
+	createDir(ctx, "pkg")
+	ccp := filepath.Join("pkg", faasLowcode)
+	if ctx.FileExists(ccp) {
+		ctx.Logf("QUANXIANG lowcode plugin exists")
+		return nil
+	}
 
+	ctx.Logf("Introduce QUANXIANG lowcode plugin")
+
+	ctx.Exec([]string{"cp", "-R", filepath.Join(ctx.BuildpackRoot(), faasLowcode), faasLowcode})
+	ctx.Exec([]string{"echo", ">>", "replace github.com/quanxiang-cloud/faas-lowcode => ./pkg/faas-lowcode"})
 	return nil
 }
 
-func createPlugins(ctx *gcp.Context) {
-	if !ctx.FileExists("plugins") {
-		ctx.MkdirAll("plugins", 0755)
+func createDir(ctx *gcp.Context, name string) {
+	if !ctx.FileExists(name) {
+		ctx.MkdirAll(name, 0755)
 	}
 }
 
