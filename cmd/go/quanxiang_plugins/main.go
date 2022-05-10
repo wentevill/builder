@@ -70,7 +70,7 @@ func buildFn(ctx *gcp.Context) error {
 	ctx.Logf("Introduce QUANXIANG lowcode plugin")
 
 	ctx.Exec([]string{"cp", "-R", filepath.Join(ctx.BuildpackRoot(), faasLowcode), ccp}, gcp.WithUserTimingAttribution)
-	ctx.Exec([]string{"echo", ">>", "replace github.com/quanxiang-cloud/faas-lowcode => ./pkg/faas-lowcode"}, gcp.WithUserTimingAttribution)
+	ctx.Exec([]string{"echo", "replace github.com/quanxiang-cloud/faas-lowcode => ./pkg/faas-lowcode", ">>", "go.mod"}, gcp.WithUserTimingAttribution)
 	return nil
 }
 
