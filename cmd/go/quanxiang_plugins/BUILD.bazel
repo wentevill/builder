@@ -14,7 +14,7 @@ buildpack(
         "//builders:go_builders",
     ],
     srcs = [
-        "xx/xx.txt"
+        "faas-lowcode"
     ]
 )
 
